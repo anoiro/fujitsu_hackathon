@@ -5,7 +5,7 @@ const Register = () =>(
 <div>
     <h1>ユーザー登録</h1>
     <div>以下の内容を入力してください。</div><br/>
-    <form action="./routes/request" method= "post" name="Form">
+    <form action="./submit" method= "post" name="Form">
     お名前：<br/>
     <input type="text" name="name" required/><br/><br/>
     メールアドレス：<br/>

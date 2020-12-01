@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     db.collection("datas").doc("text").get().then(function(doc) {
       document.getElementById("e-mail").value=doc.data().vtext
     });
-    db.collection("datas").doc("pass").get().then(function(doc) {
-      document.getElementById("sendtext-text").value=doc.data().vtext
+    db.collection("datas").doc("text").get().then(function(doc) {
+      document.getElementById("pass").value=doc.data().vtext
     });
 });
 
@@ -41,15 +41,15 @@ const Register = () =>(
     <script defer src="/__/firebase/init.js"></script>
 </Head>
 
-<body>
+<main>
     <h1>ユーザー登録</h1>
     <div>以下の内容を入力してください。</div><br/>
     お名前：<br/>
     <input type="text" id="name" required/><br/><br/>
     メールアドレス：<br/>
-    <input type="text" ide="e-mail" required/><br/><br/>
+    <input type="text" id="e-mail" required/><br/><br/>
     パスワード：<br/>
-    <input type="password" id="pass" required/><br/><br/>
+    <input type="text" id="pass" required/><br/><br/>
 
     <button id="sendtext-btn">送信</button><br/><br/>
     <div>
@@ -57,6 +57,6 @@ const Register = () =>(
     <a>ホームに戻る &gt;&gt;</a>
     </Link>
     </div>
-</body>
+</main>
 </div>
 );export default Register;

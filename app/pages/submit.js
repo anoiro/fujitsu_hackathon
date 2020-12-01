@@ -1,14 +1,5 @@
-var express = require('express');
-var router = express.Router();
-
-router.post('/', function(req, res, next) {
-    var name = req.body.name;
-    var mail = req.body.e-mail;
-    var pass = req.body.pass;
-    console.log(name);
-  });
-
-module.exports = router;
+import Link from 'next/link';
+import React from 'react';
 
 const Submit = () =>(
     <div>

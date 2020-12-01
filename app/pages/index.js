@@ -4,7 +4,7 @@ import React from 'react';
 const Home = () =>(
 <div>
     <h1>Next.js</h1>
-    <div>Home</div>
+    <div>welcome to Next.js</div>
     <div>
     <Link href="/register">
     <a>Go to Register &gt;&gt;</a>

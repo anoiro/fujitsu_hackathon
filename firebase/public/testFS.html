@@ -1,0 +1,76 @@
+<script>
+// 消費者用のコレクションとドキュメントを作成
+var db = firebase.firestore();
+// 消費者のプロフィール
+db.collection("customers").doc("customerName").set({
+  //DBに突っ込みたいもの
+  name: "test",
+  email: "test@sample.com",
+  password: "testtest",
+  created: firebase.database.ServerValue.TIMESTAMP
+})
+.then(function() {
+    console.log("Document successfully written!");
+})
+.catch(function(error) {
+    console.error("Error writing document: ", error);
+});
+
+// 消費者の日々の体温
+// db.collection("temparature").doc("myTemparature").set({
+//     //DBに突っ込みたいもの
+//     customerID: "docRef.id", // ログイン状態で得られるID情報
+//     temparature: 36.5,
+//     created: firebase.database.ServerValue.TIMESTAMP // タイムスタンプ
+//   })
+//   .then(function() {
+//       console.log("Document successfully written!");
+//   })
+//   .catch(function(error) {
+//       console.error("Error writing document: ", error);
+//   });
+
+// // 消費者の予防接種状況
+// db.collection("vaccination").doc("myVaccination").set({
+//     //DBに突っ込みたいもの
+//     customerID: "docRef.id", // ログイン状態で得られるID情報
+//     flu: "date", // date型で受けとりたい
+//     hepatitis: "date", // date型で受けとりたい
+//     corona: "date" // date型で受けとりたい
+//   })
+//   .then(function() {
+//       console.log("Document successfully written!");
+//   })
+//   .catch(function(error) {
+//       console.error("Error writing document: ", error);
+//   });
+
+// // 店舗用のコレクションとドキュメントを作成
+// db.collection("store").doc("storeName").set({
+//   //DBに突っ込みたいもの
+//   name: "test",
+//   address: "testtest",
+//   url: "http://test.com",
+// })
+// .then(function() {
+//     console.log("Document successfully written!");
+// })
+// .catch(function(error) {
+//     console.error("Error writing document: ", error);
+// });
+
+// // 店舗のリアルタイムな状況
+// db.collection("condition").doc("ourCondtions").set({
+//     //DBに突っ込みたいもの
+//     storeID: "docRef.id",
+//     datetime: "datetime", // リアルタイムに更新したい
+//     allCustomers: 10, // 全来店者数
+//     chaoc: 6 // 体温を読み取って安全な体温をしている人たちの人数
+//   })
+//   .then(function() {
+//       console.log("Document successfully written!");
+//   })
+//   .catch(function(error) {
+//       console.error("Error writing document: ", error);
+//   });
+</script>

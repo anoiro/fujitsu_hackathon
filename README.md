@@ -18,3 +18,9 @@
 # Note for us
 - How to delete the site deployed
 https://qiita.com/koyo-miyamura/items/be874197f8995b579e01
+
+# Definition of pages
+- customer/login
+- customer/register
+- store/login
+- store/register

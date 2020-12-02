@@ -21,6 +21,10 @@ https://qiita.com/koyo-miyamura/items/be874197f8995b579e01
 
 # Definition of pages
 - customer/login
+    - login page for customer
 - customer/register
+    - register page for customer
 - store/login
+    - login page for store
 - store/register
+    - register page for store

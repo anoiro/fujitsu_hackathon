@@ -20,20 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   })
 
-  function signup() {
-    let email = document.getElementById('email').value
-    let password = document.getElementById('password').value
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        console.log('ユーザー作成完了')
-        alert('ユーザー作成完了')
-      })
-      .catch((error) => {
-        console.log('ユーザー作成失敗', error);
-        alert('ユーザー作成失敗')
-      });
-  }
-
   function login() {
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
@@ -41,6 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(() => {
         console.log('ログイン完了')
         alert('ログイン完了')
+        var user = firebase.auth().currentUser;
+        var name;
+        if (user != null) {
+        name = user.displayName;
+        alert(name);
+        }
       })
       .catch((error) => {
         console.log('ログイン失敗', error);

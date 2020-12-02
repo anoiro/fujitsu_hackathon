@@ -9,13 +9,10 @@ function signup() {
       var user = firebase.auth().currentUser;
       user.updateProfile({
         displayName: name,
-        photoURL: "https://example.com/jane-q-user/profile.jpg"
       }).then(function() {
         // Update successful.
-        alert("name ok")
       }).catch(function(error) {
         // An error happened.
-        alert("name no")
       });
     })
     .catch((error) => {

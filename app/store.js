@@ -6,10 +6,13 @@ import firebase from "firebase";
 // Firebase設定
 var config = {
 	apiKey: "AIzaSyDYZ2QiB2DbEbTvgoS-7RJuzD4p8_5Qeg4",
-	databaseURL: "",
+	authDomain: "fujitsuhackathon.firebaseapp.com",
+	databaseURL: "https://fujitsuhackathon.firebaseio.com",
 	projectId: "fujitsuhackathon",
-	storageBucket: "",
-	messagingSenderId: ""
+	storageBucket: "fujitsuhackathon.appspot.com",
+	messagingSenderId: "699704083467",
+	appId: "1:699704083467:web:80a13effed46be0849f30e",
+	measurementId: "G-XBZQ8BRVD7"
 };
 
 // Firebase 初期化

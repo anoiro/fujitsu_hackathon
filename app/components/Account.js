@@ -15,6 +15,7 @@ class Account extends Component {
 		this.login_check = this.login_check.bind(this);
 	}
 
+
 	// ログイン処理
 	login() {
 		//////////////////////////// ここを普通のログイン処理に変える

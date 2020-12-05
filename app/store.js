@@ -36,7 +36,7 @@ export const auth = firebase.auth();
 // ステート初期値
 const initial = {
 	login: false,
-	id: -1,
+	id: '',
 	username: '(click here!)',
 	email: '',
 	data: [],

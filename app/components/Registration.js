@@ -16,7 +16,6 @@ class Registration extends Component {
 
 	constructor(props) {
 		super(props);
-		this.logined = this.logined.bind(this);
 		this.state = {
 			email: '',
 			pass: '',
@@ -36,34 +35,46 @@ class Registration extends Component {
 		this.setState({pass:e.target.value});
 	}
 
-	logined() {
-		console.log('ログイン');
-	}
-	
-	logouted() {
-		Router.push('/');
+	addUidDB = async (uid) => {
+		var today, tmp, day;
+		today = new Date();
+		if (today.getDate() < 10) {
+			day = '0' + String(today.getDate());
+		} else {
+			day = String(today.getDate());
+		}
+		tmp = String(today.getFullYear()) + String(today.getMonth()+1) + String(day);
+		let db;
+		db = firestore;
+		const data = {
+			cocoa: 0,
+			temp: 0,
+			v: 0
+		};
+		const res = await db.collection('body_temperature').doc(uid).collection('date').doc(tmp).set(data);
 	}
 
-	signup = () => {
-		auth.createUserWithEmailAndPassword(this.state.email, this.state.pass)
-			.then(() => {
-				console.log('ユーザ作成完了');
-				this.setState({
-					email: '',
-					pass: '',
-					message: '登録が完了しました',
-					signup: true
-				})
+	signup = async () => {
+		try {
+			const user = await auth.createUserWithEmailAndPassword(this.state.email, this.state.pass);
+			this.addUidDB(user.uid);
+			console.log('ユーザ作成完了');
+			this.setState({
+				email: '',
+				pass: '',
+				message: '登録が完了しました',
+				signup: true
 			})
-			.catch((error) => {
-				console.log('ユーザ作成失敗', error);
-				this.setState({
-					email: '',
-					pass: '',
-					message: '登録に失敗しました，正しいメールアドレス，パスワードは６文字以上で入力してください',
-					signup: false
-				})
-			});
+		}
+		catch(e) {
+			console.log('ユーザ作成失敗', e);
+			this.setState({
+				email: '',
+				pass: '',
+				message: '登録に失敗しました，正しいメールアドレス，パスワードは６文字以上で入力してください',
+				signup: false
+			})
+		};
 	}
 
 	render() {

@@ -49,6 +49,10 @@ function fireReducer(state = iniitial, action) {
 		// ダミー
 		case 'UPDATE_USER':
 			return action.value;
+		case 'LOGIN':
+			return {...state, login: true};
+		case 'LOGOUT':
+			return {...state, login: false};
 		// デフォルト
 		default:
 			return state;

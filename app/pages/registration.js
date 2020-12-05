@@ -7,7 +7,6 @@ export default () => (
 	<Layout header="" title="Registration">
 		<Registration />
 		<div>
-			<button>Registration</button>
 		</div>
 	</Layout>
 );

@@ -63,7 +63,7 @@ class QRread extends Component {
       const tn = parseFloat(temp / 10);
       console.log(result);
       if(result != null){
-        const db = firebase.firestore();
+        const db = firestore;
         //const for_num = await db.collection("store").doc("001").collection("customer").get().then(snap => {
         const for_num = await db.collection("store").doc(this.state.uid).collection("customer").get().then(snap => {
 					   size = snap.size // will return the collection size

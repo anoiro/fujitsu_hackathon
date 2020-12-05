@@ -27,8 +27,8 @@ https://qiita.com/koyo-miyamura/items/be874197f8995b579e01
     - index                        消費者ページ/ホーム
     - login                        消費者ページ/ログイン
     - login_for_store              店舗側ページ/ログイン
-    - qr_create                    消費者ページ/QRコード作成
-    - qr_read                      店舗側ページ/QRコード読み込み
+    - qr_display                    消費者ページ/QRコード作成
+    - qrread                      店舗側ページ/QRコード読み込み
     - registration                 消費者ページ/新規登録
     - registration_for_store       店舗側ページ/新規登録
     - store                        消費者ページ/店舗情報掲載(未)

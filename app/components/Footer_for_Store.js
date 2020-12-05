@@ -2,9 +2,25 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import { Navbar, Nav, Button} from "react-bootstrap";
 import { connect } from 'react-redux';
+import { firestore,  auth } from "../store";
 
 class Footer extends Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			login: false
+		}
+	}
+	componentDidMount() {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				this.setState({login: true});
+			} else {
+				this.setState({login: false});
+			}
+		});
+	}
 	render() {
 		return (<footer>
 			<nav class="navbar navbar-default navbar-expand-lg py-0 navbar-light color__footer ">
@@ -15,12 +31,12 @@ class Footer extends Component {
 			      <span class="toggler__txt">メニュー</span>
 			    </button>
 			    <div class="navbar-collapse collapse" id="navbarContent">
-						{this.props.login
+						{this.state.login
 						?
 			    	<ul class="w-100 navbar-nav pb-3 pb-lg-0 d-flex align-items-center justify-content-between">
 							<li class="nav-item"><Link href="/for_store"><a class="nav-link py-4">Home</a></Link></li>
 			      	<li class="nav-item d-lg-none"><a href="/for_store" class="btn btn-primary font-weight-bold">ログアウト</a></li>
-							<li class="nav-item"><Link href="/qr_read"><a class="nav-link py-4">QR Coad</a></Link></li>
+							<li class="nav-item"><Link href="/qrread"><a class="nav-link py-4">Read QR Coad</a></Link></li>
 							<li class="nav-item"><Link href="/store_situation"><a class="nav-link py-4">Shop Situation</a></Link></li>
 							<li class="nav-item"><Link href="/aboutus_for_store"><a class="nav-link py-4">About us</a></Link></li>
 			    	</ul>

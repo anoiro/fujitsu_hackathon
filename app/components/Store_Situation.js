@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import Panel from "react-bootstrap/lib/Panel";
 import { Button, Panel} from "react-bootstrap";
 import Link from 'next/link';
+import SituShow from '../components/SituShow';
 
 class Store_Situation extends Component {
 	style = {
@@ -16,27 +17,16 @@ class Store_Situation extends Component {
 
 	constructor(props) {
 		super(props);
-		this.logined = this.logined.bind(this);
-		this.state = {}
-		this.search_situation = this.search_situation.bind(this);
 	}
 
 	search_situation(){}
 
-	logined() {
-		console.log('ログイン');
-	}
-	logouted() {
-		Router.push('/');
-	}
-
 	render() {
 		return (
 			<div>
+				<SituShow />
 				<button onClick={this.search_situation.bind(this)}>店舗状況確認</button>
-				<Account onLogined={this.logined}
-					onLogouted={this.logouted}/>
-					<Link href="/for_store"><button>ホームへ</button></Link>
+				<Link href="/for_store"><button>ホームへ</button></Link>
 			</div>
 		)
 	}

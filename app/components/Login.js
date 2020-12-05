@@ -36,6 +36,7 @@ class Login extends Component {
 	}
 
 	logined() {
+		console.log('ログイン');
 	}
 	logouted() {
 		Router.push('/');
@@ -54,10 +55,11 @@ class Login extends Component {
 	render() {
 		return (
 			<div>
-				<input type="email" size="30" value={this.state.email} onChange={this.onChangeEmail}/>
-				<input type="password" size="30" value={this.state.pass} onChange={this.onChangePass}/>
-				<button onClick={this.signup()}>作成</button>
-				<Account />
+				<input type="text" size="30" value={this.state.email} onChange={this.onChangeEmail}/>
+				<input type="text" size="30" value={this.state.pass} onChange={this.onChangePass}/>
+				<button onClick={this.signup.bind(this)}>作成</button>
+				<Account onLogined={this.logined}
+					onLogouted={this.logouted}/>
 			</div>
 		)
 	}

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Router from 'next/router';
 import { firestore,  auth } from "../store";
 import Account from '../components/Account';
+import TempShow from '../components/TempShow';
+import Logout from '../components/Logout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Panel} from "react-bootstrap";
 import Link from 'next/link';
@@ -19,8 +21,21 @@ class Upload extends Component {
 			corona_ans: 0,
 			flu_ans: 0,
 			pne_ans: 0,
-			cocoa_ans: 0
+			email: '',
+			uid: '',
+			login: false
 		}
+	}
+	
+	componentDidMount() {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				console.log(user.uid);
+				this.setState({uid: user.uid, login: true});
+			} else {
+				this.setState({login: false});
+			}
+		});
 	}
 
 	onChangeCocoa = (e) => {
@@ -32,7 +47,7 @@ class Upload extends Component {
 	}
 
 	onChangeTemp = (e) => {
-		this.setState({temp:e.target.value});
+		this.setState({temp:Number(e.target.value)});
 	}
 
 	onChangeFlu = (e) => {
@@ -52,12 +67,11 @@ class Upload extends Component {
 	onChangeCorona = (e) => {
 		if (e.target.checked) {
 			this.setState({corona_ans:5});
-		} else {
-			this.setState({corona_ans:0});
+		} else { this.setState({corona_ans:0});
 		}
 	}
 
-	uploadDB = async (uid) => {
+	uploadDB = async () => {
 		var today, tmp, day;
 		today = new Date();
 		if (today.getDate() < 10) {
@@ -66,25 +80,27 @@ class Upload extends Component {
 			day = String(today.getDate());
 		}
 		tmp = String(today.getFullYear()) + String(today.getMonth()+1) + String(day);
-		let db;
-		db = firestore;
 		const data={
 			cocoa: this.state.cocoa,
 			temp: this.state.temp,
-			v: (this.state.corona_ans + this.state.flu_ans + this.state.pne_ans)
+			v: (this.state.corona_ans + this.state.flu_ans + this.state.pne_ans),
+			date: tmp
 		};
-		const res = await db.collection('body_temperature').doc(uid).collection('date').doc(tmp).set(data);
-		//const res = await db.collection('body_temperature').doc(uid).collection('date').doc(tmp).update({
-		//	cocoa: this.state.cocoa,
-		//	temp: this.state.temp,
-		//	v: (this.state.corona_ans + this.state.flu_ans + this.state.pne_ans)
-		//});
+		let db;
+		db = firestore;
+		const res = await db.collection('body_temperature').doc(this.state.uid).collection('date').doc(tmp).set(data);
+		const res2 = await db.collection('body_temperature').doc(this.state.uid).collection('date').doc(tmp).upload({
+			"cocoa": this.state.cocoa,
+			"temp": this.state.temp,
+			"v": (this.state.corona_ans + this.state.flu_ans + this.state.pne_ans),
+			"date": tmp
+		});
 	}
 
-	upload = async (uid) => {
+	upload = async () => {
 		try {
-			const user = await auth.currentUser;
-			this.uploadDB(user.id);
+			//const user = await auth.currentUser;
+			this.uploadDB();
 			console.log('アップロード完了');
 			this.setState({
 				message: '正常にアップロードされました',
@@ -94,7 +110,6 @@ class Upload extends Component {
 				corona_ans: 0,
 				flu_ans: 0,
 				pne_ans: 0,
-				cocoa_ans: 0
 			})
 		}
 		catch(e) {
@@ -134,7 +149,7 @@ class Upload extends Component {
 				        <div class="form-group">
 				          <label class="col-sm-2 control-label">COCOA登録状況</label>
 				          <div class="col-sm-12 radio">
-				            <label><input type="checkbox" name="cocoa_yes" value={this.state.cocoa_ans} onChange={this.onChangeCocoa}/>登録しています</label>
+				            <label><input type="checkbox" name="cocoa_yes" value={this.state.cocoa} onChange={this.onChangeCocoa}/>登録しています</label>
 				          </div>
 				        </div>
 				        <div class="form-group">
@@ -146,6 +161,9 @@ class Upload extends Component {
 				    </div>
 				  </div>
 				</div>
+				<p>{this.state.message}</p>
+				<TempShow />
+				<Logout />
 			</div>
 		)
 	}

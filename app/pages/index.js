@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "react-bootstrap/Button";
-import Index from '../Components/Index';
+import Index from '../components/Index';
 
 export default () =><div>
 	<Layout header="" title="Home">

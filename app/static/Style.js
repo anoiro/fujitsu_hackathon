@@ -20,6 +20,11 @@ export default <style>{`
 		text-align: center;
 	}
 
+	.topnav {
+		margin: 20px;
+		padding: 10px;
+	}
+
 	body {
 		text-align: center;
 		margin: 2px;

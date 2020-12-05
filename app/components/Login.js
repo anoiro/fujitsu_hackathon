@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Router from 'next/router';
-import firebase from "firebase";
+import { firestore,  auth } from "../store";
 import Account from '../components/Account';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import Panel from "react-bootstrap/lib/Panel";
@@ -42,8 +42,8 @@ class Login extends Component {
 		Router.push('/');
 	}
 
-	signup() {
-		firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.pass)
+	signup = () => {
+		auth.createUserWithEmailAndPassword(this.state.email, this.state.pass)
 			.then(() => {
 				console.log('ユーザ作成完了');
 			})
@@ -57,7 +57,7 @@ class Login extends Component {
 			<div>
 				<input type="text" size="30" value={this.state.email} onChange={this.onChangeEmail}/>
 				<input type="text" size="30" value={this.state.pass} onChange={this.onChangePass}/>
-				<button onClick={this.signup.bind(this)}>作成</button>
+				<button onClick={this.signup}>作成</button>
 				<Account onLogined={this.logined}
 					onLogouted={this.logouted}/>
 			</div>

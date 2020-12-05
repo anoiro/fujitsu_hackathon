@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/auth';
+import 'firebase/firestore';
 
 
 // Firebase設定
@@ -16,13 +18,20 @@ var config = {
 };
 
 // Firebase 初期化
-var fireapp;
-try {
-	fireapp = firebase.initializeApp(config);
-} catch (error) {
-	console.log(error.message);
-}
-export default fireapp;
+//var fireapp;
+firebase.apps.length
+  ? firebase.app()
+	:	firebase.initializeApp(config);
+
+export const firestore = firebase.firestore();
+export const auth = firebase.auth();
+
+//try {
+//	fireapp = firebase.initializeApp(config);
+//} catch (error) {
+//	console.log(error.message);
+//}
+//export default fireapp;
 
 // ステート初期値
 const initial = {

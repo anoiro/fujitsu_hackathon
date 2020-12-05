@@ -6,6 +6,7 @@ import Account from '../components/Account';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import Panel from "react-bootstrap/lib/Panel";
 import { Button, Panel} from "react-bootstrap";
+import Link from 'next/link';
 
 class Store_Situation extends Component {
 	style = {

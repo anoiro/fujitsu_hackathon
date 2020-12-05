@@ -18,19 +18,18 @@ class Footer extends Component {
 						{this.props.login
 						?
 			    	<ul class="w-100 navbar-nav pb-3 pb-lg-0 d-flex align-items-center justify-content-between">
-							<li class="nav-item"><Link href="/"><a class="nav-link py-4">Home</a></Link></li>
-			      	<li class="nav-item d-lg-none"><a href="/" class="btn btn-primary font-weight-bold">ログアウト</a></li>
-							<li class="nav-item"><Link href="/upload"><a class="nav-link py-4">Upload</a></Link></li>
-							<li class="nav-item"><Link href="/qr_create"><a class="nav-link py-4">QR Coad</a></Link></li>
-							<li class="nav-item"><Link href="/store"><a class="nav-link py-4">Search Shop</a></Link></li>
-							<li class="nav-item"><Link href="/aboutus"><a class="nav-link py-4">About us</a></Link></li>
+							<li class="nav-item"><Link href="/for_store"><a class="nav-link py-4">Home</a></Link></li>
+			      	<li class="nav-item d-lg-none"><a href="/for_store" class="btn btn-primary font-weight-bold">ログアウト</a></li>
+							<li class="nav-item"><Link href="/qr_read"><a class="nav-link py-4">QR Coad</a></Link></li>
+							<li class="nav-item"><Link href="/store_situation"><a class="nav-link py-4">Shop Situation</a></Link></li>
+							<li class="nav-item"><Link href="/aboutus_for_store"><a class="nav-link py-4">About us</a></Link></li>
 			    	</ul>
 						:
 			    	<ul class="w-100 navbar-nav pb-3 pb-lg-0 d-flex align-items-center justify-content-between">
-							<li class="nav-item"><Link href="/"><a class="nav-link py-4">Home</a></Link></li>
-							<li class="nav-item"><Link href="/registration"><a class="nav-link py-4">Registration</a></Link></li>
-							<li class="nav-item"><Link href="/aboutus"><a class="nav-link py-4">About us</a></Link></li>
-			      	<li class="nav-item d-lg-none"><a href="/login" class="btn btn-primary font-weight-bold">ログイン</a></li>
+							<li class="nav-item"><Link href="/for_store"><a class="nav-link py-4">Home</a></Link></li>
+							<li class="nav-item"><Link href="/registration_for_store"><a class="nav-link py-4">Registration</a></Link></li>
+							<li class="nav-item"><Link href="/aboutus_for_store"><a class="nav-link py-4">About us</a></Link></li>
+			      	<li class="nav-item d-lg-none"><a href="/login_for_store" class="btn btn-primary font-weight-bold">ログイン</a></li>
 			    	</ul>
 						}
 			    </div>

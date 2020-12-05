@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "fujitsuhackathon",
+    "test": "qr-data-1ed1b"
+  }
+}

@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import Panel from "react-bootstrap/lib/Panel";
 import { Button, Panel} from "react-bootstrap";
 
-class QR_Read extends Component {
+class Store_Situation extends Component {
 	style = {
 		fontSize: "12pt",
 		padding: "5px 10px"
@@ -17,10 +17,10 @@ class QR_Read extends Component {
 		super(props);
 		this.logined = this.logined.bind(this);
 		this.state = {}
-		this.read_QR = this.read_QR.bind(this);
+		this.search_situation = this.search_situation.bind(this);
 	}
 
-	read_QR(){}
+	search_situation(){}
 
 	logined() {
 		console.log('ログイン');
@@ -32,7 +32,7 @@ class QR_Read extends Component {
 	render() {
 		return (
 			<div>
-				<button onClick={this.read_QR.bind(this)}>QRコード読み取り</button>
+				<button onClick={this.search_situation.bind(this)}>店舗状況確認</button>
 				<Account onLogined={this.logined}
 					onLogouted={this.logouted}/>
 					<Link href="/for_store"><button>ホームへ</button></Link>
@@ -41,4 +41,4 @@ class QR_Read extends Component {
 	}
 }
 
-export default QR_Read;
+export default Store_Situation;

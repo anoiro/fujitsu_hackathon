@@ -77,7 +77,6 @@ class Layout extends Component {
 			      </div>
 			    </div>
 			  </nav>
-
 			{this.props.children}
 
 			<Footer footer="copyright KEITA-SHIMADA."/>

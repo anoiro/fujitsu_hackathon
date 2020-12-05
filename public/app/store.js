@@ -3,7 +3,6 @@ import thunkMiddleware from 'redux-thunk';
 import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/firestore';
-import 'firebase/storage';
 
 
 // Firebase設定
@@ -54,7 +53,7 @@ function fireReducer(state = initial, action) {
 		case 'LOGIN':
 			return {...state, login: true};
 		case 'LOGOUT':
-			return {...state, login: false, email: ''};
+			return {...state, login: false};
 		// デフォルト
 		default:
 			return state;

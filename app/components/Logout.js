@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import Panel from "react-bootstrap/lib/Panel";
 import { Button, Panel} from "react-bootstrap";
 
-class Login extends Component {
+class Logout extends Component {
 	style = {
 		fontSize: "12pt",
 		padding: "5px 10px"
@@ -19,10 +19,21 @@ class Login extends Component {
 		this.state = {
 			email: '',
 			pass: '',
-			message: 'ログインしてください'
+			message: 'ログアウトできます',
+			uid: '',
+			login: false
 		}
 		this.onChangeEmail = this.onChangeEmail.bind(this);
 		this.onChangePass = this.onChangePass.bind(this);
+	}
+	componentDidMount() {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				this.setState({uid: user.uid, login: true});
+			} else {
+				this.setState({login: true});
+			}
+		});
 	}
 
 	onChangeEmail(e) {
@@ -33,40 +44,40 @@ class Login extends Component {
 		this.setState({pass:e.target.value});
 	}
 
-	login = () => {
-		auth.signInWithEmailAndPassword(this.state.email, this.state.pass)
+	logout = () => {
+    auth.signOut()
 			.then(() => {
 				console.log('ログイン完了');
-				this.props.dispatch({
-					type: 'LOGIN'
-				});
-				this.setState({
-					email: '',	
-					pass: '',
-					message: 'ログインが完了しました',
-					login: true 
-				})
-			})
-			.catch((error) => {
-				console.log('ログイン失敗', error);
 				this.props.dispatch({
 					type: 'LOGOUT'
 				});
 				this.setState({
 					email: '',	
 					pass: '',
-					message: 'ログインに失敗しました',
+					message: 'ログアウトが完了しました',
 					login: false 
+				})
+			})
+			.catch((error) => {
+				console.log('ログアウト失敗', error);
+				this.props.dispatch({
+					type: 'LOGIN'
+				});
+				this.setState({
+					email: '',	
+					pass: '',
+					message: 'ログアウトに失敗しました',
+					login: true
 				})
 			});
 	}
 
 	render() {
-		if (this.props.login) {
+		if (this.state.login) {
 			return (
 				<div>
 					<p>{this.state.message}</p>
-					<p>{this.props.login}</p>
+					<button onClick={this.logout}>ログアウト</button>
 					<Link href="/"><button>ホームへ</button></Link>
 				</div>
 			)
@@ -75,9 +86,6 @@ class Login extends Component {
 				<div>
 					<p>{this.state.message}</p>
 					<p>{this.props.login}</p>
-					<input type="email" size="30" value={this.state.email} onChange={this.onChangeEmail}/>
-					<input type="password" size="30" value={this.state.pass} onChange={this.onChangePass}/>
-					<button onClick={this.login}>ログイン</button>
 					<Link href="/"><button>ホームへ</button></Link>
 				</div>
 			)
@@ -85,5 +93,5 @@ class Login extends Component {
 	}
 }
 
-Login = connect((state)=> state) (Login);
-export default Login;
+Logout = connect((state)=> state) (Logout);
+export default Logout;

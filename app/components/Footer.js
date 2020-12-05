@@ -2,8 +2,24 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import { Navbar, Nav, Button} from "react-bootstrap";
 import { connect } from 'react-redux';
+import { firestore,  auth } from "../store";
 
 class Footer extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			login: false
+		}
+	}
+	componentDidMount() {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				this.setState({login: true});
+			} else {
+				this.setState({login: false});
+			}
+		});
+	}
 
 	render() {
 		return (<footer>
@@ -15,7 +31,7 @@ class Footer extends Component {
 			      <span class="toggler__txt">メニュー</span>
 			    </button>
 			    <div class="navbar-collapse collapse" id="navbarContent">
-						{this.props.login
+						{this.state.login
 						?
 			    	<ul class="w-100 navbar-nav pb-3 pb-lg-0 d-flex align-items-center justify-content-between">
 							<li class="nav-item"><Link href="/"><a class="nav-link py-4">Home</a></Link></li>

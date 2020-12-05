@@ -37,12 +37,12 @@ class QRread extends Component {
           cocoa = result[i + 3];
         }
         if(result[i] == 'p'){
-          temp = result[i + 3] + result[i + 4] + result[i + 5];
+          temp = result[i + 3] + result[i + 4] + result[i + 6];
         }
       }
       const vn = Number(v);
       const cn = Number(cocoa);
-      const tn = Number(temp);
+      const tn = parseFloat(temp / 10);
       console.log(result);
       if(result != null){
         const db = firebase.firestore();

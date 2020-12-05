@@ -16,6 +16,11 @@ export default () =><div>
 			<button>ログイン&gt;&gt;</button>
 			</Link>
 		</div>
+		<div>
+  		<Link href="/user">
+			<button>アカウント情報&gt;&gt;</button>
+			</Link>
+		</div>
 			<input type="text" size="30" />
 	</Layout>
 </div>

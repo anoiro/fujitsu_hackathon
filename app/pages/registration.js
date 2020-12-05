@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import Head from 'next/head';
-var name; //ユーザー名
-
+/*const name; //ユーザー名
+/*
 document.addEventListener('DOMContentLoaded', function () {
     try {
       let app = firebase.app();
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('disp_name').innerText = '';
     }
   })
-
+/*
   function login() {
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         alert('ログイン失敗')
       });
   }
+  
 
   function logout() {
     firebase.auth().signOut().then(() => {
@@ -54,9 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
       alert('ログアウト失敗')
     })
   } 
+  */
   
-const Signup = () =>(
-<div>
+export default function Signup(){
+  return (
+    <>
  <Head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -77,8 +80,29 @@ const Signup = () =>(
     <p>パスワード：<br/>
     <input type="password" id="password" placeholder="password"/></p>
     <p>
-    <input type="button" onclick="login()" value="ログイン"/>&nbsp;
-    <input type="button" onclick="logout()" value="ログアウト"/>
+    <input type="button" value="ログイン" onClick={ async ()=>{
+      let email = document.getElementById('email').value
+      let password = document.getElementById('password').value
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+          console.log('ログイン完了')
+          alert('ログイン完了')
+        })
+        .catch((error) => {
+          console.log('ログイン失敗', error);
+          alert('ログイン失敗')
+        });
+    }}/>&nbsp;
+    <input type="button" value="ログアウト" onClick={ async ()=>{
+      firebase.auth().signOut().then(() => {
+        console.log('ログアウトしました')
+        alert('ログアウトしました')
+        //document.getElementById('emailVerify').innerHTML = 'ログイン後に確認します'
+      }).catch((error) => {
+        console.log('ログアウト失敗', error);
+        alert('ログアウト失敗')
+      })
+    }}/>
     </p>
     <div>
         <Link href="/2">
@@ -89,7 +113,6 @@ const Signup = () =>(
         </Link>
     </div>
  </main>
-</div>
+</>
 )
-
-export default Signup;
+}

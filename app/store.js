@@ -36,6 +36,7 @@ export const auth = firebase.auth();
 // ステート初期値
 const initial = {
 	login: false,
+	id: -1,
 	username: '(click here!)',
 	email: '',
 	data: [],
@@ -43,7 +44,7 @@ const initial = {
 }
 
 // レデューサー
-function fireReducer(state = iniitial, action) {
+function fireReducer(state = initial, action) {
 	// ここにアクションを追加していく
 	switch (action.type) {
 		// ダミー

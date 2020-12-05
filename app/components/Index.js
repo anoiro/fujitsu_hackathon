@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import Panel from "react-bootstrap/lib/Panel";
 import { Button, Panel} from "react-bootstrap";
 
-class Login extends Component {
+class Index extends Component {
 	style = {
 		fontSize: "12pt",
 		padding: "5px 10px"
@@ -52,14 +52,7 @@ class Login extends Component {
 				//	}
 				//});
 				this.props.dispatch({
-					type: 'UPDATE_USER',
-					value: {
-						login: true,
-						username: '',
-						email: '',
-						data: [],
-						items: []
-					}
+					type: 'LOGIN',
 				});
 				this.setState({
 					email: '',	
@@ -103,5 +96,5 @@ class Login extends Component {
 	}
 }
 
-Login = connect((state)=> state) (Login);
-export default Login;
+Index = connect((state)=> state) (Index);
+export default Index;

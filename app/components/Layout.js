@@ -65,25 +65,6 @@ class Layout extends Component {
 						}
 			    </div>
 			  </div>
-				{this.state.login
-				?
-				<div class="topnav">
-					<Link href="/">  Home  </Link>
-					<Link href="/upload">  Upload  </Link>
-					<Link href="/qr_display">  QR Coad  </Link>
-					<Link href="/qrread">  ReadQR Coad  </Link>
-					<Link href="/store">  Search Shop  </Link>
-					<Link href="/aboutus">  About us  </Link>
-			  	<a href="/logout" class="btn btn-primary font-weight-bold">ログアウト</a>
-				</div>
-				:
-				<div class="topnav">
-					<Link href="/">  Home  </Link>
-					<Link href="/registration">  Registration  </Link>
-					<Link href="/aboutus">  About us  </Link>
-			  	<a href="/login" class="btn btn-primary font-weight-bold">ログイン</a>
-				</div>
-				}
 			  <nav class="navbar navbar-default navbar-expand-lg py-0 navbar-light color__navi ">
 			    <div class="container font-weight-bold justify-content-center">
 			      <button class="navbar-toggler mb-3" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -98,8 +79,7 @@ class Layout extends Component {
 									<li class="nav-item"><Link href="/"><a class="nav-link py-4">Home</a></Link></li>
 			          	<li class="nav-item d-lg-none"><a href="/logout" class="btn btn-primary font-weight-bold">ログアウト</a></li>
 									<li class="nav-item"><Link href="/upload"><a class="nav-link py-4">Upload</a></Link></li>
-									<li class="nav-item"><Link href="/qr_dispaly"><a class="nav-link py-4">QR Coad</a></Link></li>
-									<li class="nav-item"><Link href="/qrread"><a class="nav-link py-4">Read QR Coad</a></Link></li>
+									<li class="nav-item"><Link href="/qr_display"><a class="nav-link py-4">QR Coad</a></Link></li>
 									<li class="nav-item"><Link href="/store"><a class="nav-link py-4">Search Shop</a></Link></li>
 									<li class="nav-item"><Link href="/aboutus"><a class="nav-link py-4">About us</a></Link></li>
 			        	</ul>

@@ -65,23 +65,6 @@ class Layout_for_Store extends Component {
 						}
 			    </div>
 			  </div>
-			{this.state.login
-								?
-								<div class="topnav">
-									<Link href="/">  Home  </Link>
-									<Link href="/qrread">  Read QR Coad  </Link>
-									<Link href="/store">  Search Shop  </Link>
-									<Link href="/aboutus_for_store">  About us  </Link>
-							  	<a href="/logout" class="btn btn-primary font-weight-bold">ログアウト</a>
-								</div>
-								:
-								<div class="topnav">
-									<Link href="/">  Home  </Link>
-									<Link href="/registration_for_store">  Registration  </Link>
-									<Link href="/aboutus_for_store">  About us  </Link>
-							  	<a href="/login" class="btn btn-primary font-weight-bold">ログイン</a>
-								</div>
-								}
 			  <nav class="navbar navbar-default navbar-expand-lg py-0 navbar-light color__navi ">
 			    <div class="container font-weight-bold justify-content-center">
 			      <button class="navbar-toggler mb-3" type="button" data-toggle="collapse" data-target="#navbarContent"

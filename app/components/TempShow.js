@@ -39,9 +39,6 @@ class TempShow extends Component {
 				console.log(user.uid);
 				this.setState({uid: user.uid, login: true});
 				x = user.uid;
-			} else {
-				this.setState({login: false});
-			}
 		var today, tmp, day;
 		today = new Date();
 		if (today.getDate() < 10) {
@@ -77,6 +74,9 @@ class TempShow extends Component {
 		catch (e) {
 			console.log('データ取得失敗', e);
 		}
+			} else {
+				this.setState({login: false});
+			}
 		});
 	}
 

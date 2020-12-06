@@ -23,7 +23,10 @@ class TempShow extends Component {
 			email: '',
 			uid: '',
 			login: true,
-			data: []
+			data: [],
+			cocoa: 0,
+			temp: 0,
+			v: 0
 		}
 		this.onChangeEmail = this.onChangeEmail.bind(this);
 		this.onChangePass = this.onChangePass.bind(this);
@@ -38,7 +41,6 @@ class TempShow extends Component {
 				this.setState({login: false});
 			}
 		});
-		this.getFireData;
 		var today, tmp, day;
 		today = new Date();
 		if (today.getDate() < 10) {
@@ -51,29 +53,27 @@ class TempShow extends Component {
 			let db = firestore;
 			const snapShot = await db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection('date').get();
 			//const snapShot = await db.collection('body_temperature').doc(this.state.uid).collection("date").get();
+			var size;
+      const for_num = await db.collection("body_temperature").doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection("date").get().then(snap => {
+				   size = snap.size // will return the collection size
+			});
+			console.log(size);
+			var size_str = String(size);
 			const  data = snapShot.docs.forEach(doc => {
-				console.log(doc.id);
-				console.log(db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection('date').doc(doc.id).get());
-				console.log(doc.cocoa);
-				console.log(doc);
-				for (let i in doc) {
-				this.setState({
-					data:this.state.data + doc.data()
-				});
-				console.log(this.state.data);
-				}
+				console.log(doc.data().temp);
+				var x = [];
+				x.push(doc.data().temp);
+				x.push(doc.data().v);
+				x.push(doc.data().cocoa);
+				this.state.data.push(x);
 			});
-			let sfRef = db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33");
-			sfRef.getCollections().then(collections => {
-				  collections.forEach(collection => {
-						    console.log('Found subcollection with id:', collection.id);
-						  });
-			});
+			console.log(this.state.data[0]);
+			console.log(this.state.data[1]);
 		}
 		catch (e) {
 			console.log('データ取得失敗', e);
 		}
-		console.log(this.state.data);
+		//console.log(this.state.data);
 	}
 
 	onChangeEmail(e) {
@@ -103,9 +103,11 @@ class TempShow extends Component {
 		if (this.state.login) {
 			return (
 				<div>
+					<table><tbody>
+						{this.getTableData}
+					</tbody></table>
 					<p>{this.state.message}</p>
-					{this.getTableData}
-					<Link href="/"><button>ホームへ</button></Link>
+					<p>{this.state.data}</p>
 				</div>
 			)
 		} else {

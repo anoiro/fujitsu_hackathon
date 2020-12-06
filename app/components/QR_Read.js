@@ -69,7 +69,7 @@ class QRread extends Component {
 					   size = snap.size // will return the collection size
 				});
 				var size_str = String(size);
-        await db.collection("store").doc("001").collection("customer").doc(size)
+        await db.collection("store").doc(this.state.uid).collection("customer").doc(size)
           .set({
             v: vn,
             cocoa: cn,

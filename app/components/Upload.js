@@ -99,7 +99,6 @@ class Upload extends Component {
 
 	upload = async () => {
 		try {
-			//const user = await auth.currentUser;
 			this.uploadDB();
 			console.log('アップロード完了');
 			this.setState({

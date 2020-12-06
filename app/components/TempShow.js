@@ -78,7 +78,6 @@ class TempShow extends Component {
 			console.log('データ取得失敗', e);
 		}
 		});
-		//console.log(this.state.data);
 	}
 
 	onChangeEmail(e) {
@@ -97,7 +96,10 @@ class TempShow extends Component {
 		}
 		for (let i in this.state.data) {
 			result.push(<tr key={i}>
+				<th>{this.state.data[i].date}</th>
 				<th>{this.state.data[i].temp}</th>
+				<th>{this.state.data[i].v}</th>
+				<th>{this.state.data[i].cocoa}</th>
 			</tr>);
 		}
 		result.push(<div>this.state.data</div>);
@@ -108,7 +110,13 @@ class TempShow extends Component {
 		if (this.state.login) {
 			return (
 				<div>
-					<table><tbody>
+					<table class="table"><tbody>
+					<tr> 
+						<th>日付</th>
+						<th>体温</th>
+						<th>予防接種得点(9点満点)</th>
+						<th>COCOAの使用状況(1:はい,2:いいえ)</th>
+					</tr>
 						{this.getTableData()}
 					</tbody></table>
 					<p>{this.state.message}</p>

@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import QRread from '../components/Read_QR';
+//import QRread from '../components/Read_QR';
 
 
 export default () =>(
   <Layout>
-    <QRread />
   </Layout>
 );
 // import dynamic from 'next/dynamic'

@@ -72,6 +72,7 @@ class QR_display extends Component {
     const db = firestore;
    	//const doc = await db.collection("body_temperature").doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection("date").doc("1207").get();
    	const doc = await db.collection("body_temperature").doc(this.state.uid).collection("date").doc(tmp).get();
+		console.log(doc.data());
    	const result = JSON.stringify(doc.data());
    	//const temp = result.replace( "{\"vtext\":\"" , "" ) ;
    	//const temp2 = "temp" + temp;

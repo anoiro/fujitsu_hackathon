@@ -33,10 +33,12 @@ class TempShow extends Component {
 	}
 
 	async componentDidMount() {
+		var x;
 		await auth.onAuthStateChanged((user) => {
 			if (user) {
 				console.log(user.uid);
 				this.setState({uid: user.uid, login: true});
+				x = user.uid;
 			} else {
 				this.setState({login: false});
 			}
@@ -48,6 +50,8 @@ class TempShow extends Component {
 		} else {
 			day = String(today.getDate());
 		}
+		console.log(x);
+		console.log(this.state.uid);
 		tmp = String(today.getFullYear()) + String(today.getMonth()+1) + String(day);
 		try {
 			let db = firestore;

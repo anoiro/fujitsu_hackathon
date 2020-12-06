@@ -3,6 +3,7 @@ import firebase from "firebase";
 import { firestore,  auth } from "../store";
 import "firebase/storage";
 import QRCode from "qrcode.react";
+
 const QR_display = () => {
 	var today, tmp, day;
 	today = new Date();
@@ -24,7 +25,7 @@ const QR_display = () => {
 	//});
   const [value, setValue] = useState("");
   async function getFireData() {
-    const db = firebase.firestore();
+    const db = firestore;
     const doc = await db.collection("body_temperature").doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection("date").doc(tmp).get();
     //const doc = await db.collection("body_temperature").doc(uid).collection("date").doc(tmp).get();
     const result = JSON.stringify(doc.data());

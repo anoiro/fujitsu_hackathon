@@ -34,7 +34,7 @@ class TempShow extends Component {
 
 	async componentDidMount() {
 		var x;
-		await auth.onAuthStateChanged((user) => {
+		await auth.onAuthStateChanged(async (user) => {
 			if (user) {
 				console.log(user.uid);
 				this.setState({uid: user.uid, login: true});
@@ -42,7 +42,6 @@ class TempShow extends Component {
 			} else {
 				this.setState({login: false});
 			}
-		});
 		var today, tmp, day;
 		today = new Date();
 		if (today.getDate() < 10) {
@@ -56,20 +55,21 @@ class TempShow extends Component {
 		try {
 			let db = firestore;
 			const snapShot = await db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection('date').get();
-			//const snapShot = await db.collection('body_temperature').doc(this.state.uid).collection("date").get();
+			//const snapShot = await db.collection('body_temperature').doc(user.uid).collection("date").get();
 			var size;
       const for_num = await db.collection("body_temperature").doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection("date").get().then(snap => {
 				   size = snap.size // will return the collection size
 			});
 			console.log(size);
 			var size_str = String(size);
-			const  data = snapShot.docs.forEach(doc => {
+			const data = [];
+			snapShot.docs.forEach(doc => {
 				console.log(doc.data().temp);
 				var x = [];
-				x.push(doc.data().temp);
-				x.push(doc.data().v);
-				x.push(doc.data().cocoa);
-				this.state.data.push(x);
+				data.push(doc.data());
+			});
+			this.setState({
+				data: data
 			});
 			console.log(this.state.data[0]);
 			console.log(this.state.data[1]);
@@ -77,7 +77,7 @@ class TempShow extends Component {
 		catch (e) {
 			console.log('データ取得失敗', e);
 		}
-		//console.log(this.state.data);
+		});
 	}
 
 	onChangeEmail(e) {
@@ -96,7 +96,10 @@ class TempShow extends Component {
 		}
 		for (let i in this.state.data) {
 			result.push(<tr key={i}>
-				<th>{this.state.data[i]}</th>
+				<th>{this.state.data[i].date}</th>
+				<th>{this.state.data[i].temp}</th>
+				<th>{this.state.data[i].v}</th>
+				<th>{this.state.data[i].cocoa}</th>
 			</tr>);
 		}
 		result.push(<div>this.state.data</div>);
@@ -107,11 +110,16 @@ class TempShow extends Component {
 		if (this.state.login) {
 			return (
 				<div>
-					<table><tbody>
-						{this.getTableData}
+					<table class="table"><tbody>
+					<tr> 
+						<th>日付</th>
+						<th>体温</th>
+						<th>予防接種得点(9点満点)</th>
+						<th>COCOAの使用状況(1:はい,2:いいえ)</th>
+					</tr>
+						{this.getTableData()}
 					</tbody></table>
 					<p>{this.state.message}</p>
-					<p>{this.state.data}</p>
 				</div>
 			)
 		} else {

@@ -32,6 +32,13 @@ export default <style>{`
 		border:10px solid #47a89c;/* 枠線 */
 		box-sizing:border-box;
 	}
+	.table {
+		text-align: center;
+		margin: 2px;
+		padding: 2px;
+		border:10px solid #47a89c;/* 枠線 */
+		box-sizing:border-box;
+	}
 
 	footer {
 		font-size: 10pt;

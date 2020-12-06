@@ -39,9 +39,6 @@ class TempShow extends Component {
 				console.log(user.uid);
 				this.setState({uid: user.uid, login: true});
 				x = user.uid;
-			} else {
-				this.setState({login: false});
-			}
 		var today, tmp, day;
 		today = new Date();
 		if (today.getDate() < 10) {
@@ -54,8 +51,8 @@ class TempShow extends Component {
 		tmp = String(today.getFullYear()) + String(today.getMonth()+1) + String(day);
 		try {
 			let db = firestore;
-			const snapShot = await db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection('date').get();
-			//const snapShot = await db.collection('body_temperature').doc(user.uid).collection("date").get();
+			//const snapShot = await db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection('date').get();
+			const snapShot = await db.collection('body_temperature').doc(user.uid).collection("date").get();
 			var size;
       const for_num = await db.collection("body_temperature").doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection("date").get().then(snap => {
 				   size = snap.size // will return the collection size
@@ -77,6 +74,9 @@ class TempShow extends Component {
 		catch (e) {
 			console.log('データ取得失敗', e);
 		}
+			} else {
+				this.setState({login: false});
+			}
 		});
 	}
 

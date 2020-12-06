@@ -53,8 +53,7 @@ class SituShow extends Component {
 				snapShot.docs.forEach(doc => {
 					data.push(doc.data());
 					console.log(this.state.data);
-					}
-				});
+					});
 				this.setState({
 					data: data
 				});

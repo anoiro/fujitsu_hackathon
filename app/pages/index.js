@@ -7,22 +7,12 @@ import Index from '../components/Index';
 export default () =><div>
 	<Layout header="" title="Home">
 		<div class="explain">
-			<div>Checking Health Application Over Corona (CHAOC)へようこそ．このアプリはコロナ抑制を目指したアプリになります．初めての方はRegistrationでアカウント作成，アカウント作成済みの方はログインへ進んでください．</div>
+			<div>Checking Health Application Over Corona (CHAOC)へようこそ．<br/>このアプリはコロナ抑制を目指したアプリになります．初めての方はRegistrationでアカウント作成，アカウント作成済みの方はログインへ進んでください．</div>
 		</div>
-  	<Link href="/registration">
-		<button>アカウント作成&gt;&gt;</button>
-		</Link>
-		<div>
-  		<Link href="/login">
-			<button>ログイン&gt;&gt;</button>
-			</Link>
-		</div>
-		<div>
-  		<Link href="/user">
-			<button>アカウント情報&gt;&gt;</button>
-			</Link>
-		</div>
-		<br/>
+		<p>ログイン後、体調の入力、QRコード作成、店舗検索がご利用頂けます。</p>
+		<p>体調の入力 → Upload</p>
+		<p>QRコード作成　→ QR Coad</p>
+		<p>店舗検索　→ Search Shop</p>
 		<div>
   		<Link href="/for_store">
 		  <button>店舗用はこちら&gt;&gt;</button>

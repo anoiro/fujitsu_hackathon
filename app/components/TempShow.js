@@ -54,8 +54,8 @@ class TempShow extends Component {
 		tmp = String(today.getFullYear()) + String(today.getMonth()+1) + String(day);
 		try {
 			let db = firestore;
-			const snapShot = await db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection('date').get();
-			//const snapShot = await db.collection('body_temperature').doc(user.uid).collection("date").get();
+			//const snapShot = await db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection('date').get();
+			const snapShot = await db.collection('body_temperature').doc(user.uid).collection("date").get();
 			var size;
       const for_num = await db.collection("body_temperature").doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection("date").get().then(snap => {
 				   size = snap.size // will return the collection size

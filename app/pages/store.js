@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Layout_for_Store from '../components/Layout_for_Store';
 
-import Store from '../components/Store';
+import StoreShow from '../components/StoreShow';
 
 export default () => (
 	<Layout_for_Store header="" title="Login">
-		<Store />
+		<StoreShow />
 	</Layout_for_Store>
 );

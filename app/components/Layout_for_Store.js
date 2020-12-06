@@ -56,7 +56,7 @@ class Layout_for_Store extends Component {
 						{(this.state.login)
 							?
 			      	<div class="col-lg-3 d-none d-lg-flex align-items-center justify-content-end">
-			          	<a href="/" class="btn btn-primary font-weight-bold">ログアウト</a>
+			          	<a href="/logout_for_store" class="btn btn-primary font-weight-bold">ログアウト</a>
 			      	</div>
 							:
 			      	<div class="col-lg-3 d-none d-lg-flex align-items-center justify-content-end">

@@ -61,22 +61,54 @@ class QRread extends Component {
       const vn = Number(v);
       const cn = Number(cocoa);
       const tn = parseFloat(temp / 10);
+			var today, tmp, day, size;
+			today = new Date();
       console.log(result);
       if(result != null){
         const db = firestore;
         //const for_num = await db.collection("store").doc("001").collection("customer").get().then(snap => {
+				let size;
         const for_num = await db.collection("store").doc(this.state.uid).collection("customer").get().then(snap => {
 					   size = snap.size // will return the collection size
 				});
-				var size_str = String(size);
-        await db.collection("store").doc(this.state.uid).collection("customer").doc(size)
+//<<<<<<< HEAD:app/components/QR_Read.js
+//				var size_str = String(size);
+//        await db.collection("store").doc(this.state.uid).collection("customer").doc(size)
+//=======
+				var size_str = String(size+1);
+        await db.collection("store").doc(this.state.uid).collection("customer").doc(size_str)
           .set({
             v: vn,
             cocoa: cn,
-            temp: tn
+            temp: tn,
+						date: today
           });
       }
     }
+
+		countNoApp = async () => {
+			var today, tmp, day, size;
+			today = new Date();
+			if (today.getDate() < 10) {
+				day = '0' + String(today.getDate());
+			} else {
+				day = String(today.getDate());
+			}
+			tmp = String(today.getFullYear()) + String(today.getMonth()+1) + String(day);
+			let db = firestore;
+        //const for_num = await db.collection("store").doc(this.state.uid).collection("customer").get().then(snap => {
+        const for_num = await db.collection("store").doc("SvmaUozMYAVoQhtIZoBt298ELuR2").collection("customer").get().then(snap => {
+					   size = snap.size // will return the collection size
+				});
+				var size_str = String(size+1);
+        await db.collection("store").doc("001").collection("customer").doc(size_str)
+          .set({
+            v: 3,
+            cocoa: 1,
+            temp: 46,
+						date: today
+          });
+		}
     render(){
       console.log(this.state)
       const previewStyle = {
@@ -98,6 +130,7 @@ class QRread extends Component {
             <br></br>
           <p>{this.state.result}</p>
           <button onClick={this.handClickFetchButton}>取得</button>
+          <button onClick={this.countNoApp}>アプリ未使用者をカウント</button>
         </div>
       )
     }

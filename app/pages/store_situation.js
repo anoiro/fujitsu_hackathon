@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
 
-import QR_Read from '../components/QR_Read';
+import Store_Situation from '../components/Store_Situation';
 
 export default () => (
 	<Layout header="" title="Login">
-		<QR_Read />
+		<Store_Situation />
 	</Layout>
 );

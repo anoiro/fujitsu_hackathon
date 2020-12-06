@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
-//import QRread from '../components/Read_QR';
-
+import Layout_for_Store from '../components/Layout_for_Store';
+import QRread from '../components/Read_QR';
 
 export default () =>(
-  <Layout>
-  </Layout>
+  <Layout_for_Store>
+    <QRread />
+  </Layout_for_Store>
 );
 // import dynamic from 'next/dynamic'
 // const DynamicComponent = dynamic(

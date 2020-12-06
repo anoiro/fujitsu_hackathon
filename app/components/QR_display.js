@@ -27,7 +27,7 @@ class QR_display extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-			data: 'No data',
+			data: '',
 			warning: '取得ボタンを押してください'
 		};
   }
@@ -62,7 +62,7 @@ class QR_display extends Component {
 			<button onClick={this.handClickFetchButton}>表示</button>
 			<br></br>
 			<br></br>
-	      {<QRCode value={this.state.data} /> }
+				{this.state.data ? <QRCode value={this.state.data} /> : "...loading"}
 	    </div>
 	  );
   }

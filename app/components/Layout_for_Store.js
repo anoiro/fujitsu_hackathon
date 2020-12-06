@@ -70,7 +70,7 @@ class Layout_for_Store extends Component {
 								<div class="topnav">
 									<Link href="/">  Home  </Link>
 									<Link href="/qrread">  Read QR Coad  </Link>
-									<Link href="/store">  Search Shop  </Link>
+									<Link href="/store_situation">  Store Situation  </Link>
 									<Link href="/aboutus_for_store">  About us  </Link>
 							  	<a href="/logout" class="btn btn-primary font-weight-bold">ログアウト</a>
 								</div>
@@ -96,7 +96,7 @@ class Layout_for_Store extends Component {
 									<li class="nav-item"><Link href="/for_store"><a class="nav-link py-4">Home</a></Link></li>
 			          	<li class="nav-item d-lg-none"><a href="/" class="btn btn-primary font-weight-bold">ログアウト</a></li>
 									<li class="nav-item"><Link href="/qrread"><a class="nav-link py-4">Read QR Coad</a></Link></li>
-									<li class="nav-item"><Link href="/store_situation"><a class="nav-link py-4">Shop Situation</a></Link></li>
+									<li class="nav-item"><Link href="/store_situation"><a class="nav-link py-4">store Situation</a></Link></li>
 									<li class="nav-item"><Link href="/aboutus_for_store"><a class="nav-link py-4">About us</a></Link></li>
 			        	</ul>
 								:

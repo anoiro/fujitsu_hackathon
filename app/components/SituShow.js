@@ -30,39 +30,40 @@ class SituShow extends Component {
 	}
 
 	async componentDidMount() {
-		await auth.onAuthStateChanged((user) => {
+		var today, tmp, day;
+		today = new Date();
+		if (today.getDate() < 10) {
+			day = '0' + String(today.getDate());
+		} else {
+			day = String(today.getDate());
+		}
+		tmp = String(today.getFullYear()) + String(today.getMonth()+1) + String(day);
+		await auth.onAuthStateChanged(async(user) => {
 			if (user) {
 				console.log(user.uid);
 				this.setState({uid: user.uid, login: true});
 			} else {
 				this.setState({login: false});
 			}
-		});
-		this.getFireData;
-		try {
-			let db = firestore;
-			const snapShot = await db.collection('storeCondition').doc("ourCondtions").get();
-			//const snapShot = await db.collection('body_temperature').doc(this.state.uid).collection("date").get();
-			const  data = snapShot.docs.forEach(doc => {
-				console.log(doc.id);
-				for (let i in doc) {
-				this.setState({
-					data:this.state.data + doc.data()
+			try {
+				let db = firestore;
+				const snapShot = await db.collection('user').doc(user.uid).collection('date').doc(tmp).get();
+				//const snapShot = await db.collection('body_temperature').doc(user.uid).collection("date").get();
+				const data = [];
+				snapShot.docs.forEach(doc => {
+					data.push(doc.data());
+					console.log(this.state.data);
+					}
 				});
-				console.log(this.state.data);
-				}
-			});
-			let sfRef = db.collection('body_temperature').doc("PPYnpLExZuXof2G0IqPqFGwQ9u33");
-			sfRef.getCollections().then(collections => {
-				  collections.forEach(collection => {
-						    console.log('Found subcollection with id:', collection.id);
-						  });
-			});
-		}
-		catch (e) {
-			console.log('データ取得失敗', e);
-		}
-		console.log(this.state.data);
+				this.setState({
+					data: data
+				});
+			}
+			catch (e) {
+				console.log('データ取得失敗', e);
+			}
+			console.log(user.data);
+		});
 	}
 
 	onChangeEmail(e) {

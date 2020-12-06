@@ -26,7 +26,10 @@ class QR_display extends Component {
 	// });
 	constructor(props) {
     super(props);
-    this.state = {data: 'No data'};
+    this.state = {
+			data: 'No data',
+			warning: '取得ボタンを押してください'
+		};
   }
 
   handClickFetchButton = async () => {
@@ -34,14 +37,28 @@ class QR_display extends Component {
     const doc = await db.collection("body_temperature").doc("PPYnpLExZuXof2G0IqPqFGwQ9u33").collection("date").doc("1207").get();
     //const doc = await db.collection("body_temperature").doc(uid).collection("date").doc(tmp).get();
     const result = JSON.stringify(doc.data());
+		let temp = 0;
     //const temp = result.replace( "{\"vtext\":\"" , "" ) ;
     //const temp2 = "temp" + temp;
 		this.setState({data: result});
+		for(let i = 0; i < result.length; i++){
+			if(result[i] == 'p'){
+				temp = result[i + 3] + result[i + 4] + result[i + 6];
+			}
+		}
+		const tn = parseFloat(temp / 10);
+		if(tn >= 37.5){
+			this.setState({warning: '体温が37.5度を超えています。'})
+		}
+		else{
+			this.setState({warning: '正常な体温です'})
+		}
   }
 
 	render(){
 		return (
 	    <div className="Sample">
+			<p>{this.state.warning}</p>
 			<button onClick={this.handClickFetchButton}>表示</button>
 			<br></br>
 			<br></br>

@@ -9,7 +9,7 @@ import { firestore,  auth } from "../store";
 import "firebase/storage";
 
 
-class QRread extends Component {
+class QR_read extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -22,6 +22,7 @@ class QRread extends Component {
 			login: false,
       delay: 100,
       result: 'No result',
+      warning:'QRコードを読み取ってください',
 		}
     this.handleScan = this.handleScan.bind(this)
 	}
@@ -51,8 +52,8 @@ class QRread extends Component {
         if(result[i] == 'v'){
           v = result[i + 3];
         }
-        if(result[i] == 'a'){
-          cocoa = result[i + 3];
+        if(result[i] == 'o' && result[i + 1] == 'a'){
+          cocoa = result[i + 4];
         }
         if(result[i] == 'p'){
           temp = result[i + 3] + result[i + 4] + result[i + 6];
@@ -61,6 +62,13 @@ class QRread extends Component {
       const vn = Number(v);
       const cn = Number(cocoa);
       const tn = parseFloat(temp / 10);
+      if(tn >= 37.5){
+        this.setState({warning: '体温が37.5度を超えています!!'})
+      }
+      else{
+        this.setState({warning: '正常な体温です'})
+      }
+      this.setState({cosTemp: tn});
       console.log(result);
       if(result != null){
         const db = firestore;
@@ -86,7 +94,8 @@ class QRread extends Component {
 
       return(
         <div>
-        　<p>QRコードを読み取ってください</p>
+        　<p>{this.state.warning}</p>
+        <p>{this.state.result}</p>
           <QrReader
             delay={this.state.delay}
             style={previewStyle}
@@ -96,11 +105,10 @@ class QRread extends Component {
             <br></br>
             <br></br>
             <br></br>
-          <p>{this.state.result}</p>
           <button onClick={this.handClickFetchButton}>取得</button>
         </div>
       )
     }
   }
 
-export default QRread;
+export default QR_read;

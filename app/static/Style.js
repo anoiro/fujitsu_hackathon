@@ -13,11 +13,16 @@ export default <style>{`
 	}
 
 	header {
-		width: 70%;
+		width: 20%;
 		padding: 15px 0;
 		margin: 0 auto;
 		font-size: 50pt;
 		text-align: center;
+	}
+
+	.topnav {
+		margin: 20px;
+		padding: 10px;
 	}
 
 	body {

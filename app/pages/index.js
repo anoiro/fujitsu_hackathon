@@ -2,9 +2,11 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "react-bootstrap/Button";
+import Index from '../components/Index';
 
 export default () =><div>
 	<Layout header="" title="Home">
+		<Index />
 		<div class="explain">
 			<div>Checking Health Application Over Corona (CHAOC)へようこそ．このアプリはコロナ抑制を目指したアプリになります．初めての方はRegistrationでアカウント作成，アカウント作成済みの方はログインへ進んでください．</div>
 		</div>
@@ -14,6 +16,11 @@ export default () =><div>
 		<div>
   		<Link href="/login">
 			<button>ログイン&gt;&gt;</button>
+			</Link>
+		</div>
+		<div>
+  		<Link href="/user">
+			<button>アカウント情報&gt;&gt;</button>
 			</Link>
 		</div>
 			<input type="text" size="30" />

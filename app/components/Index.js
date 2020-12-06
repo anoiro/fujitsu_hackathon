@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import Panel from "react-bootstrap/lib/Panel";
 import { Button, Panel} from "react-bootstrap";
 
-class Login extends Component {
+class Index extends Component {
 	style = {
 		fontSize: "12pt",
 		padding: "5px 10px"
@@ -16,6 +16,7 @@ class Login extends Component {
 
 	constructor(props) {
 		super(props);
+		this.logined = this.logined.bind(this);
 		this.state = {
 			email: '',
 			pass: '',
@@ -33,12 +34,25 @@ class Login extends Component {
 		this.setState({pass:e.target.value});
 	}
 
+	logined() {
+		console.log('ログイン');
+	}
+	logouted() {
+		Router.push('/');
+	}
+
 	login = () => {
 		auth.signInWithEmailAndPassword(this.state.email, this.state.pass)
 			.then(() => {
 				console.log('ログイン完了');
+				//this.props.dispatch({
+				//	type: 'UPDATE_USER',
+				//	value: {
+				//		login: true
+				//	}
+				//});
 				this.props.dispatch({
-					type: 'LOGIN'
+					type: 'LOGIN',
 				});
 				this.setState({
 					email: '',	
@@ -49,9 +63,6 @@ class Login extends Component {
 			})
 			.catch((error) => {
 				console.log('ログイン失敗', error);
-				this.props.dispatch({
-					type: 'LOGOUT'
-				});
 				this.setState({
 					email: '',	
 					pass: '',
@@ -85,5 +96,5 @@ class Login extends Component {
 	}
 }
 
-Login = connect((state)=> state) (Login);
-export default Login;
+Index = connect((state)=> state) (Index);
+export default Index;

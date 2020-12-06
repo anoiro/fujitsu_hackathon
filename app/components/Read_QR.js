@@ -5,19 +5,37 @@ const QrReader = dynamic(
 )
 import React, { Component } from 'react';
 import firebase from "firebase";
+import { firestore,  auth } from "../store";
 import "firebase/storage";
 
 
 class QRread extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: '',
+			pass: '',
+			created: '',
+			message: 'mail，パスワードを入力してください．パスワードは6文字以上でお願いします．',
+			signup: false,
+			uid: '',
+			login: false,
       delay: 100,
       result: 'No result',
-    }
-
+		}
     this.handleScan = this.handleScan.bind(this)
-    }
+	}
+	componentDidMount() {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				console.log(user);
+				console.log(user.uid);
+				this.setState({uid: user.uid, login: true});
+			} else {
+				this.setState({login: false});
+			}
+		});
+	}
     handleScan(data){
       this.setState({
         result: data,
@@ -45,8 +63,13 @@ class QRread extends Component {
       const tn = parseFloat(temp / 10);
       console.log(result);
       if(result != null){
-        const db = firebase.firestore();
-        await db.collection("store").doc("001").collection("customer").doc("001")
+        const db = firestore;
+        //const for_num = await db.collection("store").doc("001").collection("customer").get().then(snap => {
+        const for_num = await db.collection("store").doc(this.state.uid).collection("customer").get().then(snap => {
+					   size = snap.size // will return the collection size
+				});
+				var size_str = String(size);
+        await db.collection("store").doc("001").collection("customer").doc(size)
           .set({
             v: vn,
             cocoa: cn,

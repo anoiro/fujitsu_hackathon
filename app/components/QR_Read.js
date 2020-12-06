@@ -130,7 +130,7 @@ class QRread extends Component {
             <br></br>
           <p>{this.state.result}</p>
           <button onClick={this.handClickFetchButton}>取得</button>
-          <button onClick={this.countNoApp}>アプリ未使用者をカウント</button>
+          <button onClick={this.countNoApp}>アプリ未使用者をカウント(実装中)</button>
         </div>
       )
     }

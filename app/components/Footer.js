@@ -37,8 +37,8 @@ class Footer extends Component {
 							<li class="nav-item"><Link href="/"><a class="nav-link py-4">Home</a></Link></li>
 			      	<li class="nav-item d-lg-none"><a href="/" class="btn btn-primary font-weight-bold">ログアウト</a></li>
 							<li class="nav-item"><Link href="/upload"><a class="nav-link py-4">Upload</a></Link></li>
-							<li class="nav-item"><Link href="/qr_create"><a class="nav-link py-4">QR Coad</a></Link></li>
-							<li class="nav-item"><Link href="/store"><a class="nav-link py-4">Search Shop</a></Link></li>
+							<li class="nav-item"><Link href="/qr_display"><a class="nav-link py-4">QR Coad</a></Link></li>
+							<li class="nav-item"><Link href="/store"><a class="nav-link py-4">Search Shop(実装中・ここ完成させたかった)</a></Link></li>
 							<li class="nav-item"><Link href="/aboutus"><a class="nav-link py-4">About us</a></Link></li>
 			    	</ul>
 						:

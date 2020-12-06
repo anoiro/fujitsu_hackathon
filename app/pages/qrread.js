@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Layout_for_Store from '../components/Layout_for_Store';
-import QRread from '../components/Read_QR';
+import QRread from '../components/QR_Read';
 
 export default () =>(
   <Layout_for_Store>
